@@ -22,5 +22,9 @@ namespace WebAddressbookTests.Helpers
         {
             driver.FindElement(By.LinkText("groups")).Click();
         }
+        public void Logout()
+        {
+            driver.FindElement(By.LinkText("Logout")).Click();
+        }
     }
 }
