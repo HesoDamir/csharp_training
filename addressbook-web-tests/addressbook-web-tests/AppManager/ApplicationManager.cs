@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,25 @@ namespace WebAddressbookTests
 
         public ApplicationManager()
         {
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+            FirefoxOptions options = new FirefoxOptions();
+            options.BrowserExecutableLocation = @"c:\Program Files\Mozilla Firefox ESR\firefox.exe";
+            options.UseLegacyImplementation = true;
+            driver = new FirefoxDriver(options);
+            baseURL = "http://localhost/";
+
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
+
         public LoginHelper Auth
         {
             get
@@ -53,6 +68,8 @@ namespace WebAddressbookTests
                 return contactHelper;
             }
         }
+
+
         public void Stop()
         {
             try
@@ -65,6 +82,6 @@ namespace WebAddressbookTests
             }
         }
     }
-   
+
 }
 
