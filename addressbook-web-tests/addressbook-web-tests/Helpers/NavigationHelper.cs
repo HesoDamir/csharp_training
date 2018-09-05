@@ -29,11 +29,6 @@ namespace WebAddressbookTests.Helpers
             driver.FindElement(By.LinkText("Logout")).Click();
             return this;
         }
-        public NavigationHelper GoToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-            return this;
-        }
         public NavigationHelper GoToContactPage()
         {
             driver.FindElement(By.LinkText("add new")).Click();
