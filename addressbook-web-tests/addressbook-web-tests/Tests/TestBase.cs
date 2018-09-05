@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using WebAddressbookTests.Model;
 
-namespace WebAddressbookTests
+namespace WebAddressbookTests.Tests
 {
     public class TestBase 
     {

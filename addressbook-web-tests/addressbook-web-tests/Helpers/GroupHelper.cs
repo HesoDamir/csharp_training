@@ -3,6 +3,7 @@ using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using WebAddressbookTests.Model;
 
 namespace WebAddressbookTests.Helpers
 {
@@ -17,6 +18,17 @@ namespace WebAddressbookTests.Helpers
             manager.Navigator.GoToGroupPage();
             SelectGroup(index);
             RemoveGroup();
+            RuturnToGroupPage();
+            return this;
+        }
+
+        public GroupHelper Modify(int index, GroupData newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(index);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
             RuturnToGroupPage();
             return this;
         }
@@ -73,6 +85,17 @@ namespace WebAddressbookTests.Helpers
         public GroupHelper InitNewGroupCreation()
         {
             driver.FindElement(By.Name("new")).Click();
+            return this;
+        }
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
     }

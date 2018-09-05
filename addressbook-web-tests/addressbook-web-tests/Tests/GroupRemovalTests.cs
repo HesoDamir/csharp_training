@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 
 
-namespace WebAddressbookTests
+namespace WebAddressbookTests.Tests
 {
     [TestFixture]
-    public class aGroupRemovalTests : TestBase
+    public class GroupRemovalTests : TestBase
     {
 
         [Test]
