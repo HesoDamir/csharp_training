@@ -45,10 +45,8 @@ namespace WebAddressbookTests.Helpers
         }
         public ContactHelper FillContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Name);
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(contact.MiddleName);
+            Type(By.Name("firstname"), contact.Name);
+            Type(By.Name("middlename"), contact.MiddleName);
             return this;
         }
         public ContactHelper RemoveContact()
