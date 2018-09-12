@@ -64,6 +64,7 @@
     <Compile Include="Tests\ContactModificationTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
+    <Compile Include="Tests\TestSuiteFixture.cs" />
     <Compile Include="UnitTest\Circle.cs" />
     <Compile Include="Tests\ContactCreationTests.cs" />
     <Compile Include="Model\ContactData.cs" />
