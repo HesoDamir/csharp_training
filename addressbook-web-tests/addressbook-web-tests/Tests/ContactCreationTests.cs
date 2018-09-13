@@ -4,7 +4,7 @@ using WebAddressbookTests.Model;
 namespace WebAddressbookTests.Tests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         [Test]
         public void ContactCreationTest()
@@ -13,7 +13,6 @@ namespace WebAddressbookTests.Tests
             contact.MiddleName = "Khabi";
 
             app.Contacts.Create(contact);
-            app.Navigator.Logout();
         }
        
     }

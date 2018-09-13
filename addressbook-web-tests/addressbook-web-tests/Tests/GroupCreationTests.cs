@@ -4,7 +4,7 @@ using WebAddressbookTests.Model;
 namespace WebAddressbookTests.Tests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase
     {
         [Test]
         public void GroupCreationTest()
@@ -14,7 +14,6 @@ namespace WebAddressbookTests.Tests
             group.Header = "header";
 
             app.Groups.Create(group);
-            app.Navigator.Logout();
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -24,7 +23,6 @@ namespace WebAddressbookTests.Tests
             group.Header = "";
 
             app.Groups.Create(group);
-            app.Navigator.Logout();
         }
 
     }
