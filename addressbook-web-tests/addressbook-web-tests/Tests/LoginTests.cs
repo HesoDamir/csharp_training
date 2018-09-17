@@ -9,7 +9,7 @@ using WebAddressbookTests.Model;
 namespace WebAddressbookTests.Tests
 {
     [TestFixture]
-    public class ALoginTests : TestBase
+    public class LoginTests : TestBase
     {
         [Test]
         public void LoginWithValidCredentials()

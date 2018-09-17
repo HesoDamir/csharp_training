@@ -13,18 +13,26 @@ namespace WebAddressbookTests.Helpers
         {
         }
 
-        public GroupHelper Remove(int index)
+        public GroupHelper Remove(GroupData group, int index)
         {
             manager.Navigator.GoToGroupPage();
+            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
+            {
+                Create(group);
+            }
             SelectGroup(index);
             RemoveGroup();
             RuturnToGroupPage();
             return this;
         }
 
-        public GroupHelper Modify(int index, GroupData newData)
+        public GroupHelper Modify(GroupData group, GroupData newData, int index)
         {
             manager.Navigator.GoToGroupPage();
+            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
+            {
+                Create(group);
+            }
             SelectGroup(index);
             InitGroupModification();
             FillGroupForm(newData);

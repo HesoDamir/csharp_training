@@ -9,7 +9,10 @@ namespace WebAddressbookTests.Tests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contacts.Remove();
+            ContactData contact = new ContactData("Damir");
+            contact.MiddleName = "Khabi";
+
+            app.Contacts.Remove(contact);
         }
 
     }
