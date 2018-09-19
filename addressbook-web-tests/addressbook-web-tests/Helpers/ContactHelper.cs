@@ -12,27 +12,18 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
-
-        public ContactHelper Remove(ContactData contact)
+        public ContactHelper Remove()
         {
             manager.Navigator.GoToHomePage();
-            if (!IsElementPresent(By.XPath("//input[@name='selected[]']")))
-            {
-                Create(contact);
-            }
             SelectContact();
             RemoveContact();
             AcceptRemove();
             return this;
         }
 
-        public ContactHelper Modify(ContactData contact, ContactData newData)
+        public ContactHelper Modify(ContactData newData)
         {
             manager.Navigator.GoToHomePage();
-            if (!IsElementPresent(By.XPath("//img[@title='Edit']")))
-            {
-                Create(contact);
-            }
             ClickEditContact();
             FillContactForm(newData);
             ClickUpdate();
@@ -84,6 +75,10 @@ namespace WebAddressbookTests.Helpers
             driver.FindElement(By.XPath("//input[@name='update']")).Click();
             return this;
         }
-
+        public bool EditOfContactIsPresent()
+        {
+            bool result = IsElementPresent(By.XPath("//img[@title='Edit']"));
+            return result;
+        }
     }
 }

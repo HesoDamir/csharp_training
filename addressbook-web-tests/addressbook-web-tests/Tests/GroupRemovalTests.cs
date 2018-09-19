@@ -13,7 +13,12 @@ namespace WebAddressbookTests.Tests
             group.Footer = "footer";
             group.Header = "header";
 
-            app.Groups.Remove(group, 1);
+            app.Navigator.GoToGroupPage();
+            if (!app.Groups.CheckBoxOfGroupIsPresent())
+            {
+                app.Groups.Create(group);
+            }
+            app.Groups.Remove(1);
         }
     }
 }

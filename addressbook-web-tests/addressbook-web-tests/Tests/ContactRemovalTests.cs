@@ -12,7 +12,12 @@ namespace WebAddressbookTests.Tests
             ContactData contact = new ContactData("Damir");
             contact.MiddleName = "Khabi";
 
-            app.Contacts.Remove(contact);
+            app.Navigator.GoToHomePage();
+            if (!app.Contacts.EditOfContactIsPresent())
+            {
+                app.Contacts.Create(contact);
+            }
+            app.Contacts.Remove();
         }
 
     }

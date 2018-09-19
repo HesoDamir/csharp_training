@@ -13,14 +13,15 @@ namespace WebAddressbookTests.Helpers
         public GroupHelper(ApplicationManager manager) : base(manager)
         {
         }
+        public bool CheckBoxOfGroupIsPresent()
+        {
+            bool result = IsElementPresent(By.XPath("(//input[@name='selected[]'])"));
+            return result;
+        }
 
-        public GroupHelper Remove(GroupData group, int index)
+        public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupPage();
-            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
-            {
-                Create(group);
-            }
             SelectGroup(index);
             RemoveGroup();
             RuturnToGroupPage();
@@ -39,13 +40,9 @@ namespace WebAddressbookTests.Helpers
             return groups;
         }
 
-        public GroupHelper Modify(GroupData group, GroupData newData, int index)
+        public GroupHelper Modify(GroupData newData, int index)
         {
             manager.Navigator.GoToGroupPage();
-            if (!IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")))
-            {
-                Create(group);
-            }
             SelectGroup(index);
             InitGroupModification();
             FillGroupForm(newData);

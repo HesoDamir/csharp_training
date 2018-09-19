@@ -22,7 +22,12 @@ namespace WebAddressbookTests.Tests
             newData.Footer = "footer1";
             newData.Header = "header1";
 
-            app.Groups.Modify(group, newData, 1);
+            app.Navigator.GoToGroupPage();
+            if (!app.Groups.CheckBoxOfGroupIsPresent())
+            {
+                app.Groups.Create(group);
+            }
+            app.Groups.Modify(newData, 1);
         }
     }
 }
