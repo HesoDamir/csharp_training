@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,6 +20,18 @@ namespace WebAddressbookTests.Helpers
             RemoveContact();
             AcceptRemove();
             return this;
+        }
+
+        internal List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
         }
 
         public ContactHelper Modify(ContactData newData)
@@ -46,7 +59,8 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper FillContactForm(ContactData contact)
         {
             Type(By.Name("firstname"), contact.Name);
-            Type(By.Name("middlename"), contact.MiddleName);
+            Type(By.Name("lastname"), contact.LastName);
+
             return this;
         }
         public ContactHelper RemoveContact()

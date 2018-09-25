@@ -10,10 +10,10 @@ namespace WebAddressbookTests.Tests
         public void ContactModificationTest()
         {
             ContactData contact = new ContactData("Damir");
-            contact.MiddleName = "Khabi";
+            contact.LastName = "Khabi";
 
             ContactData newData = new ContactData("Damir1");
-            newData.MiddleName = "Khabi1";
+            newData.LastName = "Khabi1";
 
             app.Navigator.GoToHomePage();
             if (!app.Contacts.EditOfContactIsPresent())

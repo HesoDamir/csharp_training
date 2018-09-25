@@ -10,7 +10,7 @@ namespace WebAddressbookTests.Tests
         public void ContactRemovalTest()
         {
             ContactData contact = new ContactData("Damir");
-            contact.MiddleName = "Khabi";
+            contact.LastName = "Khabi";
 
             app.Navigator.GoToHomePage();
             if (!app.Contacts.EditOfContactIsPresent())

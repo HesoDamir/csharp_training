@@ -8,7 +8,7 @@ namespace WebAddressbookTests.Tests
     public class GroupCreationTests : AuthTestBase
     {
         [Test]
-        public void GroupCreationTest()
+        public void AGroupCreationTest()
         {
             GroupData group = new GroupData("name");
             group.Footer = "footer";
@@ -20,6 +20,10 @@ namespace WebAddressbookTests.Tests
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             Assert.AreEqual(oldGroups.Count+1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -34,6 +38,11 @@ namespace WebAddressbookTests.Tests
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
         [Test]
         public void BadNameGroupCreationTest()
@@ -48,6 +57,11 @@ namespace WebAddressbookTests.Tests
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
             Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
     }
 

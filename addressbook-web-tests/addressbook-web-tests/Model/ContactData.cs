@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests.Model
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string name;
-        private string middleName = "";
+        private string lastName = "";
 
         public ContactData(string name)
         {
@@ -26,17 +26,51 @@ namespace WebAddressbookTests.Model
                 name = value;
             }
         }
-        public string MiddleName
+        public string LastName
         {
             get
             {
-                return middleName;
+                return lastName;
             }
             set
             {
-                middleName = value;
+                lastName = value;
+            }
+        }
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Name == other.Name && LastName == other.LastName;
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode() + LastName.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return "name&lastName = " + Name + " " + LastName;
+        }
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            if (LastName.CompareTo(other.LastName) == 0)
+            {
+                return Name.CompareTo(other.Name);
+            }
+            else
+            {
+                return LastName.CompareTo(other.LastName);
             }
         }
     }
-
 }
