@@ -29,7 +29,8 @@ namespace WebAddressbookTests.Helpers
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                contacts.Add(new ContactData(cells[1].Text + cells[2].Text));
             }
             return contacts;
         }
