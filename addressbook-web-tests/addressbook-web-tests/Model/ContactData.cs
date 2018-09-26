@@ -15,6 +15,12 @@ namespace WebAddressbookTests.Model
         {
             this.name = name;
         }
+        public ContactData(string name, string lastName)
+        {
+            this.name = name;
+            this.lastName = lastName;
+
+        }
         public string Name
         {
             get
