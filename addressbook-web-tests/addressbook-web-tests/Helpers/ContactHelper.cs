@@ -21,18 +21,21 @@ namespace WebAddressbookTests.Helpers
             AcceptRemove();
             return this;
         }
-
+        private List<ContactData>contactCache = null;
         internal List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                foreach (IWebElement element in elements)
+                {
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
+                }
             }
-            return contacts;
+            return new List<ContactData>(contactCache);
         }
 
         public ContactHelper Modify(ContactData newData)
@@ -55,6 +58,7 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper FillContactForm(ContactData contact)
@@ -67,6 +71,7 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -88,6 +93,7 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper ClickUpdate()
         {
             driver.FindElement(By.XPath("//input[@name='update']")).Click();
+            contactCache = null;
             return this;
         }
         public bool EditOfContactIsPresent()
