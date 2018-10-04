@@ -11,7 +11,11 @@ namespace WebAddressbookTests.Model
     {
         private string allEmails;
         private string allPhones;
+        private string fullData;
 
+        public ContactData()
+        {
+        }
         public ContactData(string name)
         {
             Name = name;
@@ -30,7 +34,27 @@ namespace WebAddressbookTests.Model
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
-
+        public string ContactProperty { get; set; }
+        public string FullData
+        {
+            get
+            {
+                if (fullData != null)
+                {
+                    return fullData;
+                }
+                else
+                {
+                    return ((CleanContactlData(Name + " " + LastName)).Trim() + "\r\n" + CleanContactlData(Address) + "\r\n" +
+                        CleanContactlData("H: " + HomePhone) + CleanContactlData("M: " + MobilePhone) + CleanContactlData("W: " + WorkPhone) + "\r\n" +
+                        CleanContactlData(Email) + CleanContactlData(Email2) + CleanContactlData(Email3)).Trim();
+                }
+            }
+            set
+            {
+                fullData = value;
+            }
+        }
         public string AllEmails
         {
             get
@@ -68,6 +92,14 @@ namespace WebAddressbookTests.Model
             {
                 allPhones = value;
             }
+        }
+        private string CleanContactlData(string contactData)
+        {
+            if (contactData == null || contactData == "" || contactData == "H: " || contactData == "M: " || contactData == "W: ")
+            {
+                return "";
+            }
+            return contactData + "\r\n";
         }
         private string CleanUpEmail(string email)
         {

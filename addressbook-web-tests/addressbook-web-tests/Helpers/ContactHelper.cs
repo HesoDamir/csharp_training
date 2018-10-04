@@ -121,7 +121,7 @@ namespace WebAddressbookTests.Helpers
                 AllEmails = allEmails
             };
         }
-        public ContactData GetContactInformationFromEditFrom(int index)
+        public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
             InitContactModification(index);
@@ -152,7 +152,11 @@ namespace WebAddressbookTests.Helpers
         {
             manager.Navigator.GoToHomePage();
             InitContacProperty(index);
-
+            string contactProperty = driver.FindElement(By.Id("content")).Text;
+            return new ContactData()
+            {
+                ContactProperty = contactProperty
+            };
             throw new NotImplementedException();
         }
         public void InitContactModification(int index)
