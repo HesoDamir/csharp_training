@@ -16,6 +16,7 @@ namespace WebAddressbookTests.Tests
         {
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
             ContactData fromFrom = app.Contacts.GetContactInformationFromEditFrom(0);
+            ContactData fromProperty = app.Contacts.GetContactInformationFromProperty(0);
 
             Assert.AreEqual(fromTable, fromFrom);
             Assert.AreEqual(fromTable.Address, fromFrom.Address);

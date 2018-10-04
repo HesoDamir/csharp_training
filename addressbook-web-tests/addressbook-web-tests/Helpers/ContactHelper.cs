@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -21,7 +22,8 @@ namespace WebAddressbookTests.Helpers
             AcceptRemove();
             return this;
         }
-        private List<ContactData>contactCache = null;
+
+        private List<ContactData> contactCache = null;
         internal List<ContactData> GetContactList()
         {
             if (contactCache == null)
@@ -146,12 +148,30 @@ namespace WebAddressbookTests.Helpers
 
             };
         }
+        public ContactData GetContactInformationFromProperty(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContacProperty(index);
+
+            throw new NotImplementedException();
+        }
         public void InitContactModification(int index)
         {
             driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
         }
-
+        public void InitContacProperty(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+        }
+        public int GetNumberOfSearchResult()
+        {
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
+        }
     }
 }
