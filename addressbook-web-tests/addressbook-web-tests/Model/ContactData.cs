@@ -137,7 +137,8 @@ namespace WebAddressbookTests.Model
         }
         public override string ToString()
         {
-            return "name&lastName = " + Name + " " + LastName;
+            return "name = " + Name + "\nlastName = " + LastName + "\naddress = " + Address + 
+                "\nhomePhone = " + HomePhone + "\nemail = " + Email;
         }
         public int CompareTo(ContactData other)
         {

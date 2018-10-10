@@ -67,6 +67,9 @@ namespace WebAddressbookTests.Helpers
         {
             Type(By.Name("firstname"), contact.Name);
             Type(By.Name("lastname"), contact.LastName);
+            Type(By.Name("address"), contact.Address);
+            Type(By.Name("home"), contact.HomePhone);
+            Type(By.Name("email"), contact.Email);
 
             return this;
         }
