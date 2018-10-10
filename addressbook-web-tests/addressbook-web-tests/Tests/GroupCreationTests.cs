@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WebAddressbookTests.Model;
 using System;
+using System.IO;
 
 namespace WebAddressbookTests.Tests
 {
@@ -11,7 +12,7 @@ namespace WebAddressbookTests.Tests
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
             List<GroupData> groups = new List<GroupData>();
-            for (int i=0; i<5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 groups.Add(new GroupData(GenerateRandomString(30))
                 {
@@ -21,8 +22,23 @@ namespace WebAddressbookTests.Tests
             }
             return groups;
         }
+        public static IEnumerable<GroupData> GroupDataFromFile()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            string[] lines = File.ReadAllLines(@"groups.csv");
+            foreach (string l in lines)
+            {
+                string[] parts = l.Split(',');
+                groups.Add(new GroupData(parts[0])
+                {
+                    Header = parts[1],
+                    Footer = parts[2]
+                });
+            }
+            return groups;
 
-        [Test, TestCaseSource("RandomGroupDataProvider")]
+        }
+        [Test, TestCaseSource("GroupDataFromFile")]
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
