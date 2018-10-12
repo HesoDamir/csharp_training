@@ -39,14 +39,12 @@ namespace WebAddressbookTests.Tests
                 });
             }
             return groups;
-
         }
         public static IEnumerable<GroupData> GroupDataFromXMLFile()
         {
             return (List<GroupData>)
                 new XmlSerializer(typeof(List<GroupData>))
                 .Deserialize(new StreamReader(@"groups.xml"));
-
         }
         public static IEnumerable<GroupData> GroupDataFromJsonFile()
         {
