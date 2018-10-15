@@ -23,10 +23,7 @@ namespace WebAddressbookTests
 
         private ApplicationManager()
         {
-            FirefoxOptions options = new FirefoxOptions();
-            options.BrowserExecutableLocation = @"c:\Program Files\Mozilla Firefox ESR\firefox.exe";
-            options.UseLegacyImplementation = true;
-            driver = new FirefoxDriver(options);
+            driver = new FirefoxDriver();
             baseURL = "http://localhost/";
 
             loginHelper = new LoginHelper(this);

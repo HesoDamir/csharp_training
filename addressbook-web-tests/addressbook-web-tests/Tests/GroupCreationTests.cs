@@ -50,6 +50,7 @@ namespace WebAddressbookTests.Tests
         {
             return JsonConvert.DeserializeObject<List<GroupData>>(File.ReadAllText(@"groups.json"));
 
+
         }
         [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
