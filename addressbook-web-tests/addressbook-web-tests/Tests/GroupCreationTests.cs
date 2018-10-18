@@ -90,15 +90,7 @@ namespace WebAddressbookTests.Tests
         [Test]
         public void ATestDBConectiviti()
         {
-            DateTime start = DateTime.Now;
-            List<GroupData> fromUi = app.Groups.GetGroupList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.Write(end.Subtract(start));
-
-            start = DateTime.Now;
-            List<GroupData> fromDи = GroupData.GetAll();
-            end = DateTime.Now;
-            System.Console.Out.Write(end.Subtract(start));
+            GroupData.GetAll()[0].GetContacts();
         }
     }
 }

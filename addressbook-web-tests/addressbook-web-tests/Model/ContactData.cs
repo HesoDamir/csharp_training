@@ -43,7 +43,7 @@ namespace WebAddressbookTests.Model
         public string Email2 { get; set; }
         public string Email3 { get; set; }
         public string ContactProperty { get; set; }
-        [Column(Name = "id"), PrimaryKey, Identity]
+        [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
 
         [XmlIgnore]
