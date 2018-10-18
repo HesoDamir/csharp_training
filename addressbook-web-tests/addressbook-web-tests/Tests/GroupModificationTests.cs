@@ -9,7 +9,7 @@ using WebAddressbookTests.Model;
 namespace WebAddressbookTests.Tests
 {
     [TestFixture]
-    public class GroupModificationTests : AuthTestBase
+    public class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest()
@@ -22,16 +22,18 @@ namespace WebAddressbookTests.Tests
             newData.Footer = "footer1";
             newData.Header = "header1";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
+            GroupData oldData = oldGroups[0];
 
             app.Navigator.GoToGroupPage();
             if (!app.Groups.CheckBoxOfGroupIsPresent())
             {
                 app.Groups.Create(group);
             }
-            app.Groups.Modify(newData, 0);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            app.Groups.Modify(newData, oldData);
+
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();

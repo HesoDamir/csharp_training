@@ -1,4 +1,5 @@
 ﻿using System;
+using LinqToDB.Mapping;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Xml.Serialization;
 
 namespace WebAddressbookTests.Model
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allEmails;
@@ -26,16 +28,24 @@ namespace WebAddressbookTests.Model
             Name = name;
             LastName = lastName;
         }
+        [Column(Name = "firstname")]
         public string Name { get; set; }
+        [Column(Name = "lastname")]
         public string LastName { get; set; }
+        [Column(Name = "address")]
         public string Address { get; set; }
+        [Column(Name = "home")]
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
+        [Column(Name = "email")]
         public string Email { get; set; }
         public string Email2 { get; set; }
         public string Email3 { get; set; }
         public string ContactProperty { get; set; }
+        [Column(Name = "id"), PrimaryKey, Identity]
+        public string Id { get; set; }
+
         [XmlIgnore]
         public string FullData
         {
@@ -155,6 +165,13 @@ namespace WebAddressbookTests.Model
             else
             {
                 return LastName.CompareTo(other.LastName);
+            }
+        }
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Contacts select g).ToList();
             }
         }
     }

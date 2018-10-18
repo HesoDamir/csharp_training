@@ -16,16 +16,17 @@ namespace WebAddressbookTests.Tests
             ContactData newData = new ContactData("Damir1");
             newData.LastName = "Khabi1";
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData oldData = oldContacts[0];
 
             app.Navigator.GoToHomePage();
             if (!app.Contacts.EditOfContactIsPresent())
             {
                 app.Contacts.Create(contact);
             }
-            app.Contacts.Modify(newData);
+            app.Contacts.Modify(oldData);
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts[0].Name = newData.Name;
             oldContacts[0].LastName = newData.LastName;
             oldContacts.Sort();

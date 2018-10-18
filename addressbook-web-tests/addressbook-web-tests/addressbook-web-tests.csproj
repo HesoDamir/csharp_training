@@ -82,11 +82,13 @@
     <Compile Include="Helpers\ContactHelper.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="AppManager\ApplicationManager.cs" />
+    <Compile Include="Model\AddressBookDB.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />
     <Compile Include="Tests\ContactInformationTests.cs" />
     <Compile Include="Tests\ContactModificationTests.cs" />
     <Compile Include="Tests\ContactRemovalTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
+    <Compile Include="Tests\GroupTestBase.cs" />
     <Compile Include="Tests\LoginTests.cs" />
     <Compile Include="UnitTest\Circle.cs" />
     <Compile Include="Tests\ContactCreationTests.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Tests\GroupCreationTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="contacts.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

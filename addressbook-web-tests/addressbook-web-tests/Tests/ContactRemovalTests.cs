@@ -13,7 +13,8 @@ namespace WebAddressbookTests.Tests
             ContactData contact = new ContactData("Damir");
             contact.LastName = "Khabi";
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData toBeRemoved = oldContacts[0];
 
             app.Navigator.GoToHomePage();
             if (!app.Contacts.EditOfContactIsPresent())
@@ -22,7 +23,7 @@ namespace WebAddressbookTests.Tests
             }
             app.Contacts.Remove();
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
         }
