@@ -21,7 +21,8 @@ namespace WebAddressbookTests.Helpers
             SelectContactById(contact.Id);
             RemoveContact();
             AcceptRemove();
-            System.Threading.Thread.Sleep(3000);
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
             return this;
         }
 
