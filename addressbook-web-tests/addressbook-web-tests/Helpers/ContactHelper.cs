@@ -15,10 +15,10 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
-        public ContactHelper Remove()
+        public ContactHelper Remove(ContactData contact)
         {
             manager.Navigator.GoToHomePage();
-            SelectContact();
+            SelectContactById(contact.Id);
             RemoveContact();
             AcceptRemove();
             return this;
@@ -48,6 +48,7 @@ namespace WebAddressbookTests.Helpers
         public void SelectContact(string contactId)
         {
             driver.FindElement(By.Id(contactId)).Click();
+            System.Threading.Thread.Sleep(3000);
         }
 
         public void ClearGroupFilter()
@@ -72,10 +73,10 @@ namespace WebAddressbookTests.Helpers
             return new List<ContactData>(contactCache);
         }
 
-        public ContactHelper Modify(ContactData newData)
+        public ContactHelper Modify(ContactData newData, ContactData oldData)
         {
             manager.Navigator.GoToHomePage();
-            ClickEditContact();
+            ClickEditContactById(oldData.Id);
             FillContactForm(newData);
             ClickUpdate();
             return this;
@@ -112,9 +113,9 @@ namespace WebAddressbookTests.Helpers
             return this;
         }
 
-        public ContactHelper SelectContact()
+        public ContactHelper SelectContactById(string id)
         {
-            driver.FindElement(By.XPath("//input[@name='selected[]']")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value = '" + id + "'])")).Click();
             return this;
         }
         public ContactHelper AcceptRemove()
@@ -125,6 +126,11 @@ namespace WebAddressbookTests.Helpers
         public ContactHelper ClickEditContact()
         {
             driver.FindElement(By.XPath("//img[@title='Edit']")).Click();
+            return this;
+        }
+        public ContactHelper ClickEditContactById(string id)
+        {
+            driver.FindElement(By.XPath("//a[@href = 'edit.php?id=" + id + "']")).Click();
             return this;
         }
         public ContactHelper ClickUpdate()

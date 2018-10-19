@@ -24,7 +24,7 @@ namespace WebAddressbookTests.Tests
             {
                 app.Contacts.Create(contact);
             }
-            app.Contacts.Modify(oldData);
+            app.Contacts.Modify(newData, oldData);
 
             List<ContactData> newContacts = ContactData.GetAll();
             oldContacts[0].Name = newData.Name;
