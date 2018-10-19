@@ -21,6 +21,7 @@ namespace WebAddressbookTests.Helpers
             SelectContactById(contact.Id);
             RemoveContact();
             AcceptRemove();
+            System.Threading.Thread.Sleep(3000);
             return this;
         }
 
@@ -48,7 +49,6 @@ namespace WebAddressbookTests.Helpers
         public void SelectContact(string contactId)
         {
             driver.FindElement(By.Id(contactId)).Click();
-            System.Threading.Thread.Sleep(3000);
         }
 
         public void ClearGroupFilter()
